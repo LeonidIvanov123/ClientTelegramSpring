@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  serverdb:
+    build:
+      context: .
+      dockerfile: dockerfile_postgresSql
+    ports:
+      - "5432:5432"
