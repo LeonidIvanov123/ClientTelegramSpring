@@ -43,4 +43,14 @@ public class TelegramUser {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public String toString() {
+        return "TelegramUser{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

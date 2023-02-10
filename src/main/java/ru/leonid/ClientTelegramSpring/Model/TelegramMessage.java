@@ -1,21 +1,30 @@
 package ru.leonid.ClientTelegramSpring.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
-@Entity
+@Embeddable
 public class TelegramMessage {
-    @Id
+
     long message_id;
     @ManyToOne
-    TelegramUser user; // msg from
+    TelegramUser from;
     @ManyToOne
     TelegramChat chat;
-    Date date; //date of msg
-    String text; //text of message
+    String date;
+    String text;
+
+    @Override
+    public String toString() {
+        return "TelegramMessage{" +
+                "message_id=" + message_id +
+                ", from=" + from +
+                ", chat=" + chat +
+                ", date='" + date + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 
     public long getMessage_id() {
         return message_id;
@@ -25,12 +34,12 @@ public class TelegramMessage {
         this.message_id = message_id;
     }
 
-    public TelegramUser getUser() {
-        return user;
+    public TelegramUser getFrom() {
+        return from;
     }
 
-    public void setUser(TelegramUser user) {
-        this.user = user;
+    public void setFrom(TelegramUser from) {
+        this.from = from;
     }
 
     public TelegramChat getChat() {
@@ -41,11 +50,11 @@ public class TelegramMessage {
         this.chat = chat;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -52,4 +52,15 @@ public class TelegramChat {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "TelegramChat{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", username='" + username + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
