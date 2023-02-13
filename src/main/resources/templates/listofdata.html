@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Last updates from bot: </title>
 </head>
 <body>
-
+    <table border="1">
+        <caption> Updates from Telegram bot</caption>
+        <thead>
+        <tr>
+            <th>update_id</th>
+            <th>username</th>
+            <th>date</th>
+            <th>text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${updates.empty}">
+            <td colspan="4"> No updates Available </td>
+        </tr>
+        <tr th:each="update : ${updates}">
+            <td> <span th:text="${update.update_id}"> Id </span></td>
+            <td th:text="${update.getMessage().getFrom().username}"></td>
+            <td th:text="${update.getMessage().date}"></td>
+            <td th:text="${update.getMessage().text}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="../home.html" th:href="@{/}">Return to home</a>
+    </p>
 </body>
 </html>

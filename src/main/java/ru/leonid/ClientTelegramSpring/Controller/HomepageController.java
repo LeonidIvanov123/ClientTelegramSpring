@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.leonid.ClientTelegramSpring.Model.TelegramUpdate;
 import ru.leonid.ClientTelegramSpring.Service.BotService;
 import ru.leonid.ClientTelegramSpring.Service.BotServiceInterface;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomepageController {
@@ -24,7 +28,9 @@ public class HomepageController {
 
     @GetMapping("/update")
     public String getUpdatesfrombot(Model model){
-        botService.getUpdates(0); //test
+
+        model.addAttribute("updates", botService.getUpdates(0));
+        System.out.println();
         return "listofdata";
     }
 }
