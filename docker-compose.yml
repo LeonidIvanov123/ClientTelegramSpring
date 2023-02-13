@@ -1,9 +1,24 @@
 version: "3.9"
 
 services:
-  serverdb:
+  serverdb: #Это имя хоста - по нему подключаемся из pgAdmin
     build:
       context: .
       dockerfile: dockerfile_postgresSql
     ports:
       - "5432:5432"
+    networks:
+      - postgres
+
+  monitordb:
+    build:
+      context: .
+      dockerfile: dockerfile_pgAdminer
+    ports:
+      - "9991:80"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
