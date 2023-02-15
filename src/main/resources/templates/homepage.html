@@ -6,7 +6,12 @@
 </head>
 <body>
     <h1>Welcom to TelegramBotClient</h1>
-    <h1> <p th:text="${botAddress}"></p> </h1>
+    <p th:text="${botAddress}"></p>
+
+
+    <form method="GET" th:action="@{/update}">
+        <input type="submit" value="Show date from TG bot" />
+    </form>
 
 </body>
 </html>

@@ -2,6 +2,8 @@ package ru.leonid.ClientTelegramSpring.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -11,6 +13,7 @@ public class TelegramUpdate {
     @Id
     @JsonProperty("update_id")
     long update_id;
+    @Embedded
     @JsonProperty("message")
     TelegramMessage message = new TelegramMessage();
 

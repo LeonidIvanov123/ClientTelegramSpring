@@ -22,23 +22,27 @@ public class BotService implements BotServiceInterface{
     public String botAddress;
     @Autowired
     SessionFactory sessionFactory;
+    @Autowired
+    private TelegramUpdateRepository telegramUpdateRepository;
 
 
     @Override
     public List<TelegramUpdate> getUpdates(long offset) {
+        //запросить из базы последний update и отправить в ТГ запрос с новым update+1
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ResponseFromTG> responseEntity = restTemplate.getForEntity(botAddress+ "getUpdates", ResponseFromTG.class);
 
         ResponseFromTG responseFromTG = responseEntity.getBody();
+       // for(TelegramUpdate tgupdts: responseFromTG.getTelegramUpdates())
+        //    telegramUpdateRepository.save(tgupdts);
+        //foreach responseFromTG.telegramupdates : tgupdt .save() to repository;
 
         return responseFromTG.getTelegramUpdates();
     }
 
     @Override
     public void sendToChat(long chatId, String text) {
-
     }
-
     @Override
     public TelegramUpdate getLastFromDB() {
 
