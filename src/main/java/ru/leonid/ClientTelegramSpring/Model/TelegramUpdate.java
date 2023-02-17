@@ -2,10 +2,7 @@ package ru.leonid.ClientTelegramSpring.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,9 +10,9 @@ public class TelegramUpdate {
     @Id
     @JsonProperty("update_id")
     long update_id;
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonProperty("message")
-    TelegramMessage message = new TelegramMessage();
+    TelegramMessage message; //в update только 1 сообщение
 
     @Override
     public String toString() {

@@ -11,5 +11,7 @@ public interface BotServiceInterface {
     TelegramUpdate getLastFromDB();
     String getBotAddress();
 
+    boolean sendMessage(String message, Long chat_id);
+
 
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import ru.leonid.ClientTelegramSpring.Model.TelegramUpdate;
 import ru.leonid.ClientTelegramSpring.Service.BotService;
 import ru.leonid.ClientTelegramSpring.Service.BotServiceInterface;
@@ -21,7 +22,7 @@ public class HomepageController {
 
     @GetMapping("/")
     public String homepage(Model model){
-        botService.getLastFromDB();
+        //botService.getLastFromDB();
         model.addAttribute("botAddress", botService.getBotAddress());
         return "homepage";
     }
@@ -29,8 +30,9 @@ public class HomepageController {
     @GetMapping("/update")
     public String getUpdatesfrombot(Model model){
 
-        model.addAttribute("updates", botService.getUpdates(0));
+        model.addAttribute("updates", botService.getUpdates(5)); //показывает последние 5 сообщений боту
         System.out.println();
         return "listofdata";
     }
+
 }

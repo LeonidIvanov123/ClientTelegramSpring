@@ -3,6 +3,10 @@ package ru.leonid.ClientTelegramSpring.Model;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class TelegramUser {
@@ -11,6 +15,8 @@ public class TelegramUser {
     String first_name;
     String last_name;
     String username;
+    @OneToMany
+    List<TelegramMessage> messages = new ArrayList<>();
 
     public long getId() {
         return id;

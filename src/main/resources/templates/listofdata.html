@@ -27,6 +27,11 @@
         </tr>
         </tbody>
     </table>
+
+    <label>Actions:</label>
+    <form method="GET" th:action="@{/update}">
+        <input type="submit" value="Update page" />
+    </form>
     <p>
         <a href="../home.html" th:href="@{/}">Return to home</a>
     </p>

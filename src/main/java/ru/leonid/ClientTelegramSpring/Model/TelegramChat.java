@@ -1,8 +1,9 @@
 package ru.leonid.ClientTelegramSpring.Model;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class TelegramChat {
@@ -12,6 +13,8 @@ public class TelegramChat {
     String last_name;
     String username;
     String type;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<TelegramMessage> messages = new ArrayList<>();
 
     public long getId() {
         return id;

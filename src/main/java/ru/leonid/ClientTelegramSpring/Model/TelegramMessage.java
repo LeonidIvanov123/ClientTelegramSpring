@@ -3,13 +3,14 @@ package ru.leonid.ClientTelegramSpring.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-@Embeddable
+@Entity
 public class TelegramMessage {
+    @Id
     long message_id;
     @JsonProperty("from")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     TelegramUser from_user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     TelegramChat chat;
     @JsonProperty("date")
     String date;
