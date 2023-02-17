@@ -28,4 +28,12 @@ public class HomepageControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.view().name("homepage"));
     }
+
+    @Test
+    public void testgetUpdatesfrombot() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/update")
+                .accept(MediaType.TEXT_HTML)).andDo(print())
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.view().name("listofdata"));
+    }
 }

@@ -1,16 +1,11 @@
 package ru.leonid.ClientTelegramSpring.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import ru.leonid.ClientTelegramSpring.Model.TelegramUpdate;
 import ru.leonid.ClientTelegramSpring.Service.BotService;
 import ru.leonid.ClientTelegramSpring.Service.BotServiceInterface;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HomepageController {
@@ -22,16 +17,14 @@ public class HomepageController {
 
     @GetMapping("/")
     public String homepage(Model model){
-        //botService.getLastFromDB();
         model.addAttribute("botAddress", botService.getBotAddress());
         return "homepage";
     }
 
     @GetMapping("/update")
     public String getUpdatesfrombot(Model model){
-
-        model.addAttribute("updates", botService.getUpdates(5)); //показывает последние 5 сообщений боту
-        System.out.println();
+        long offset = 5L;
+        model.addAttribute("updates", botService.getUpdates(offset));
         return "listofdata";
     }
 

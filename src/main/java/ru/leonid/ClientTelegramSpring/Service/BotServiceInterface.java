@@ -8,10 +8,6 @@ public interface BotServiceInterface {
 
     List<TelegramUpdate> getUpdates(long offset);
     void sendToChat(long chatId, String text);
-    TelegramUpdate getLastFromDB();
+    Long getLastIdFromDB();
     String getBotAddress();
-
-    boolean sendMessage(String message, Long chat_id);
-
-
 }

@@ -1,6 +1,6 @@
 package ru.leonid.ClientTelegramSpring.Model;
 
-import jakarta.persistence.Embeddable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TelegramUser {
     @Id
     long id;
