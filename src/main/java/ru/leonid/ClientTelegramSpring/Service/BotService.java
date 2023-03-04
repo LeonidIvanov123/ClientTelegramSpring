@@ -21,12 +21,12 @@ public class BotService implements BotServiceInterface{
     @Autowired
     private TelegramUpdateRepository telegramUpdateRepository;
 
-    private Long maxidOffset;
+    private Long maxidOffset = 0L;
 
     @Override
     public List<TelegramUpdate> getUpdates(long offset) {
         //запросить из базы последний update и отправить в ТГ запрос с новым update+1
-        maxidOffset = getLastIdFromDB() - offset;
+        if(maxidOffset == 0L) maxidOffset = getLastIdFromDB() - offset;
 
         String query = botAddress+ "getUpdates";
         if(maxidOffset != 0L) query = query + "?offset="+maxidOffset;

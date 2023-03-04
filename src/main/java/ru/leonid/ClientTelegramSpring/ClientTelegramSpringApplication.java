@@ -6,10 +6,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
-public class ClientTelegramSpringApplication {
-
+public class ClientTelegramSpringApplication{
 	public static void main(String[] args) {
 		SpringApplication.run(ClientTelegramSpringApplication.class, args);
 	}
-
 }
