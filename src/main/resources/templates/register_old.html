@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration page</title>
+</head>
+<body>
+<h1>Enter you personal date</h1>
+<form method="POST" th:object="${registerForm}" th:action="@{/register}" id="registerFormid">
+    <label for="username">Username: </label>
+    <input type="text" th:field="*{registerForm.username}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('registerForm.username')}"
+          th:errors="*{registerForm.username}">username Error</span>
+    <br>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password"/><br/>
+
+    <label for="confirm">Confirm password: </label>
+    <input type="password" name="confirm"/><br/>
+
+    <label for="fullname">Full name: </label>
+    <input type="text" name="fullname"/><br/>
+    <label for="street">Street: </label>
+    <input type="text" name="street"/><br/>
+    <label for="city">City: </label>
+    <input type="text" name="city"/><br/>
+    <label for="phone">Phone: </label>
+    <input type="text" name="phone"/><br/>
+    <input type="submit" value="Register"/>
+</form>
+</body>
+</html>

@@ -1,18 +1,18 @@
 package ru.leonid.ClientTelegramSpring.Model;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
 Use in RegistrationController for Build Entity UserApp
  **/
 public class RegistrationForm {
-    @NotNull
+    @Size(min=5, message="Длина никнейма не менее 5 символов")
     private String username;
-    @Min(5)
+    @Size(min=5, message="Длина пароля не менее 5 символов")
     private String password;
-    @NotNull
+    @NotNull(message = "Необходимо указать полное имя")
     private String fullname;
     private String street;
     private String city;

@@ -6,21 +6,43 @@
 </head>
 <body>
 <h1>Enter you personal date</h1>
-<form method="POST" th:action="@{/register}" id="registerForm">
+<form method="POST" th:object="${registerForm}" th:action="@{/register}" id="myForm">
     <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
+    <input type="text" th:field="*{username}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">username Error</span>
+    <br>
+
     <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
-    <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
+    <input type="password" th:field="*{password}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">password Error</span>
+    <br>
+
     <label for="fullname">Full name: </label>
-    <input type="text" name="fullname"/><br/>
-    <label for="street">Street: </label>
-    <input type="text" name="street"/><br/>
+    <input type="text" th:field="*{fullname}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('fullname')}"
+          th:errors="*{fullname}">fullname Error</span>
+    <br>
+
     <label for="city">City: </label>
-    <input type="text" name="city"/><br/>
-    <label for="phone">Phone: </label>
-    <input type="text" name="phone"/><br/>
+    <input type="text" th:field="*{city}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">city Error</span>
+    <br>
+
+    <label for="street">Street: </label>
+    <input type="text" th:field="*{street}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">street Error</span>
+    <br>
+
+
     <input type="submit" value="Register"/>
 </form>
 </body>

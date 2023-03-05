@@ -35,10 +35,11 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-      return httpSecurity.authorizeHttpRequests().requestMatchers("/register").permitAll().and()
+      return httpSecurity.csrf().disable()
+              .authorizeHttpRequests().requestMatchers("/register", "/images/**").permitAll().and()
               .authorizeHttpRequests().anyRequest().authenticated().
-              and().formLogin().and().
-              logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).
+              and().formLogin().loginPage("/login").permitAll().and()
+              .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).
               addLogoutHandler(((request, response, authentication) -> {
                   try {response.sendRedirect("/login");} catch (IOException e) {
                       throw new RuntimeException(e);
