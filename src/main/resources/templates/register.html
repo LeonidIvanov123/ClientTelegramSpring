@@ -7,42 +7,49 @@
 <body>
 <h1>Enter you personal date</h1>
 <form method="POST" th:object="${registerForm}" th:action="@{/register}" id="myForm">
+
+    <div class="form_group">
     <label for="username">Username: </label>
     <input type="text" th:field="*{username}"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('username')}"
-          th:errors="*{username}">username Error</span>
+    <th:block th:if="${#fields.hasErrors('username')}">
+        <div th:errorclass="invalid-input" th:errors="*{username}"></div>
+    </th:block>
     <br>
+    </div>
 
+    <div class="form_group">
     <label for="password">Password: </label>
     <input type="password" th:field="*{password}"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">password Error</span>
+    <th:block th:if="${#fields.hasErrors('password')}">
+        <div th:errorclass="invalid-input" th:errors="*{password}"></div>
+    </th:block>
     <br>
+    </div>
 
     <label for="fullname">Full name: </label>
     <input type="text" th:field="*{fullname}"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('fullname')}"
-          th:errors="*{fullname}">fullname Error</span>
+    <th:block th:if="${#fields.hasErrors('fullname')}">
+        <div th:errorclass="invalid-input" th:errors="*{fullname}"></div>
+    </th:block>
     <br>
 
+    <div class="form_group">
     <label for="city">City: </label>
     <input type="text" th:field="*{city}"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('city')}"
-          th:errors="*{city}">city Error</span>
+    <th:block th:if="${#fields.hasErrors('city')}">
+        <div th:errorclass="invalid-input" th:errors="*{city}"></div>
+    </th:block>
     <br>
+    </div>
 
+    <div class="form_group">
     <label for="street">Street: </label>
     <input type="text" th:field="*{street}"/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('street')}"
-          th:errors="*{street}">street Error</span>
+    <th:block th:if="${#fields.hasErrors('street')}">
+        <div th:errorclass="invalid-input" th:errors="*{street}"></div>
+    </th:block>
     <br>
-
-
+    </div>
     <input type="submit" value="Register"/>
 </form>
 </body>

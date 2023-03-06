@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+
 @Entity
 public class UserApp implements UserDetails {
     private static final long serialVersionUID = 1L;
