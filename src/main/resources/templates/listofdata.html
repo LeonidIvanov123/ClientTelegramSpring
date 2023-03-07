@@ -27,7 +27,6 @@
         </tr>
         </tbody>
     </table>
-
     <label>Actions:</label>
     <form method="GET" th:action="@{/update}">
         <input type="submit" value="Update page" />
@@ -35,15 +34,14 @@
     <p>
         <a href="../home.html" th:href="@{/}">Return to home</a>
     </p>
-
     <form method="POST" th:action="@{/send}">
         <label>Send to rabbitTest project: </label>
         <input type="text" name="mymessage" id="mymessage" />
-    <input type="submit" value="Send" />
+        <input type="submit" value="Send" />
+        <label th:text="${sendstatus}"></label>
     </form>
     <p>
         <a href="../logout" th:href="@{/logout}">Logout</a>
     </p>
-
 </body>
 </html>
