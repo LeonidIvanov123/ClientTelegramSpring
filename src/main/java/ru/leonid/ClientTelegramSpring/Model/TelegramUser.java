@@ -2,6 +2,7 @@ package ru.leonid.ClientTelegramSpring.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -16,7 +17,7 @@ public class TelegramUser {
     String first_name;
     String last_name;
     String username;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     List<TelegramMessage> messages = new ArrayList<>();
 
     public long getId() {

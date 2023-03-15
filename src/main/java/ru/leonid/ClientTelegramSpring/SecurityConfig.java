@@ -19,8 +19,7 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-
+public class SecurityConfig{
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -35,6 +34,7 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
       return httpSecurity.csrf().disable()
               .authorizeHttpRequests().requestMatchers("/register", "/images/**").permitAll().and()
               .authorizeHttpRequests().anyRequest().authenticated().
@@ -49,6 +49,6 @@ public class SecurityConfig {
               invalidateHttpSession(true).clearAuthentication(true).and().
               sessionManagement().
               maximumSessions(1).
-              maxSessionsPreventsLogin(true).and().and().build();//build();
+              maxSessionsPreventsLogin(true).and().and().build();
     }
 }
