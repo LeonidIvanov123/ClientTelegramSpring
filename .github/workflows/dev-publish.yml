@@ -31,7 +31,4 @@ jobs:
           script: |
             ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "rm -f /deploy/artifacts/app.jar"
             scp -o StrictHostKeyChecking=no target/*.jar ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
-            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
-              cd /deploy
-              docker-compose -f docker-compose.yml restart app
-            EOF
+            docker-compose -f /deploy/docker-compose.yml restart app
