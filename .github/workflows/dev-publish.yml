@@ -27,11 +27,11 @@ jobs:
       - name: Copy modules to remote server
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: ./target/*.jar
+          local: target/*.jar
           remote: /deploy/artifacts/app.jar
-          host: ${{ secrets.DEV_HOST }}
-          username: ${{ secrets.DEV_USERNAME }}
-          password: ${{ secrets.DEV_PASS }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
 
       - name: Restart service
         uses: appleboy/ssh-action@master
