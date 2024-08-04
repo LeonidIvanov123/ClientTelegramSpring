@@ -32,6 +32,8 @@ public class BotService implements BotServiceInterface{
         String query = botAddress+ "getUpdates";
         if(maxidOffset != 0L) query = query + "?offset="+((maxidOffset - offset)> 0? (getLastIdFromDB() - offset): 0);
 
+        System.out.print("request to TG: \n"+ query + "\n");
+
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ResponseFromTG> responseEntity = restTemplate.getForEntity(query, ResponseFromTG.class);
 

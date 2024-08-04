@@ -1,0 +1,37 @@
+name: Build project and publish to server
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Build project with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Copy jar file via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "rm -f /deploy/artifacts/app.jar"
+            scp -o StrictHostKeyChecking=no target/*.jar ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
+            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+              cd /deploy
+              docker-compose -f docker-compose.yml restart app
+            EOF

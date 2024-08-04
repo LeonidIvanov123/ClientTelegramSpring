@@ -1,5 +1,5 @@
 create table if not exists telegram_update(
-    update_id bigint PRIMARY KEY,
+    update_id bigint PRIMARY KEY
     );
 
 create table if not exists telegram_user(
