@@ -9,5 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class ClientTelegramSpringApplication{
 	public static void main(String[] args) {
 		SpringApplication.run(ClientTelegramSpringApplication.class, args);
+
+		System.out.print("\n\n\n UPDATE workflow");
 	}
 }
