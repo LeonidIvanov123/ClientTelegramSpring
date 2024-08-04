@@ -28,7 +28,6 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy modules to remote server
-        working-directory: ${{ github.workspace }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -36,9 +35,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            ls -la ${{ github.workspace }}/target/*.jar  # Verify the jar file exists
-            scp ${{ github.workspace }}/target/*.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
-
+            ls -la target/*.jar
+            scp target/*.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
+      
 
       - name: Restart service
         uses: appleboy/ssh-action@master
