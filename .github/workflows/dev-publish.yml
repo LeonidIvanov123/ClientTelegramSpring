@@ -34,11 +34,11 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
             ls -la ../build
-            scp ../build/*.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
+            scp ../build/ClientTelegramSpring-0.0.1-SNAPSHOT.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
 
       - name: Restart service
         uses: appleboy/ssh-action@master
