@@ -24,15 +24,15 @@ jobs:
       - name: List target directory with artifacts
         run: ls -la target/
 
-      - name: copy artifact to server
+      - name: Copy jar-artifact to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: target/*.jar
-          target: /deploy/artifacts/app.jar
+          source: "target/*.jar"
+          target: "/deploy/artifacts/app.jar"
 
       - name: Restart service
         uses: appleboy/ssh-action@master
