@@ -36,8 +36,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          source: "../build/*.jar"
-          target: "/deploy/artifacts/app.jar"
+          script: |
+            scp ../build/*.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/deploy/artifacts/app.jar
 
       - name: Restart service
         uses: appleboy/ssh-action@master
